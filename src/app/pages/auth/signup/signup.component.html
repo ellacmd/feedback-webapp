@@ -1,0 +1,49 @@
+<div class="container">
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label for="username">Username</mat-label>
+      <input formControlName="username" matInput />
+    </mat-form-field>
+    <div
+      *ngIf="usernameControl.invalid && usernameControl?.touched"
+      class="error"
+    >
+      <p *ngIf="usernameControl?.errors?.['required']">Username is required.</p>
+    </div>
+    <mat-form-field>
+      <mat-label for="password">Password</mat-label>
+      <input formControlName="password" matInput />
+      <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{
+        hidePassword ? "visibility_off" : "visibility"
+      }}</mat-icon>
+    </mat-form-field>
+    <div
+      *ngIf="passwordControl.invalid && passwordControl?.touched"
+      class="error"
+    >
+      <p *ngIf="passwordControl?.errors?.['required']">Password is required.</p>
+    </div>
+    <mat-form-field>
+      <mat-label for="confirmPassword">Confirm Password</mat-label>
+      <input formControlName="confirmPassword" matInput />
+      <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{
+        hidePassword ? "visibility_off" : "visibility"
+      }}</mat-icon>
+    </mat-form-field>
+    <div
+      *ngIf="
+        signupForm.hasError('PasswordNoMatch') &&
+        confirmPasswordControl?.touched
+      "
+      class="error"
+    >
+      <p>Passwords must match.</p>
+    </div>
+
+    <button [disabled]="signupForm.invalid || (loading | async)" type="submit">
+      <mat-spinner *ngIf="loading | async; else elseBlock" [diameter]="30" />
+      <ng-template #elseBlock> Sign up </ng-template>
+    </button>
+    <p class="error" *ngIf="apiError">{{ this.apiError }}</p>
+  </form>
+</div>

@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+  min-height: 100vh;
+}
+mat-tab-group {
+  width: 500px;
+  height: fit-content;
+  background-color: #fff;
+  border-radius: 8px;
+
+}

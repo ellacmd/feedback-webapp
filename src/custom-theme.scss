@@ -1,0 +1,84 @@
+
+
+@use "@angular/material" as mat;
+@include mat.core();
+
+$feedback-purple-palette: (
+  50: #f4e3fc,
+  100: #e3b9f7,
+  200: #d189f2,
+  300: #bd55ee,
+  400: #ad1fea,
+  500: #9d00e5,
+  600: #8a00e0,
+  700: #6e00da,
+  800: #5100d6,
+  900: #0000c9,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: white,
+    A700: white,
+  ),
+);
+
+$feedback-accent-palette: (
+  50: #e7e9fc,
+  100: #c3c7f6,
+  200: #9aa3f0,
+  300: #6c7eeb,
+  400: #4661e6,
+  500: #0243df,
+  600: #003bd4,
+  700: #0030c8,
+  800: #0023bd,
+  900: #0009a5,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: white,
+    A700: white,
+  ),
+);
+
+$feedback-app-primary: mat.define-palette($feedback-purple-palette);
+$feedback-app-accent: mat.define-palette(
+  $feedback-accent-palette,
+  200,
+  100,
+  400
+);
+
+$feedback-app-warn: mat.define-palette(mat.$red-palette);
+
+$feedback-app-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $feedback-app-primary,
+      accent: $feedback-app-accent,
+      warn: $feedback-app-warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($feedback-app-theme);
